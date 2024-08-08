@@ -8,7 +8,8 @@ This project effectively provides a `post-clone` hook, allowing project maintain
 To clone a repository with post-clone hooks:
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/git-hook/post-clone/master/bin/clone | bash -s -- <normal-clone-args>
+curl -fsSL https://raw.githubusercontent.com/git-hook/post-clone/master/bin/clone \
+  | bash -s -- <normal-clone-args>
 ```
 
 All arguments will be passed directly to `git clone`.
