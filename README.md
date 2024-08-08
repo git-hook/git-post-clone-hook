@@ -3,37 +3,35 @@
 As git does not provide a `post-clone` hook, some repositories come with manual instructions for post-clone configuration.
 This project effectively provides a `post-clone` hook, allowing project maintainers to specify a project's post-clone behavior and install other various hooks.
 
-# Usage
+# Use
 
 To clone a repository with post-clone hooks:
 
-    curl -fsSL https://raw.githubusercontent.com/git-hook/post-clone/master/bin/clone | bash -s -- <normal-clone-args>
+```sh
+curl -fsSL https://raw.githubusercontent.com/git-hook/post-clone/master/bin/clone | bash -s -- <normal-clone-args>
+```
 
 All arguments will be passed directly to `git clone`.
 
-## Manual
+> [!TIP]
+> If you'd rather not pipe `curl` to `bash`, use this approach instead:
+> 
+> ```sh
+> git clone https://github.com/git-hook/post-clone /tmp/post-clone
+> git clone --template=/tmp/post-clone git@github.com:username/repo-of-interest
+> ```
 
-1.  Clone this repository somewhere on disk:
+In addition to cloning the repository, this will:
 
-        git clone https://github.com/git-hook/post-clone /tmp/post-clone
-
-2.  Clone the desired repository:
-
-        git clone --template=/tmp/post-clone git@github.com:username/repo-of-interest
-
-In addition to cloning the repository, this method will: ensure
-
-- if present in the cloned repo, `/hooks/` is symlinked to
-  `/.git/hooks/`
-
-- if present in the cloned repo, `/.git/hooks/post-clone` is invoked
+- ensure `/hooks/` is symlinked to `/.git/hooks/`, if present in the cloned repo
+- ensure `/.git/hooks/post-clone` is invoked, if present in the cloned repo
 
 > [!NOTE]
 > This hook will not be automatically invoked again.
 
 # Benefits
 
-Using this `post-clone` template allows repo maintainers to
+Using this `post-clone` template allows repo maintainers to:
 
 - automate installation of client-side git hooks
 - version-control this automation inside the relevant repository
